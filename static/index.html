@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Local API availability and HTTP security-header monitor">
+  <title>API Watchtower</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="brand-mark">AW</div>
+      <div>
+        <p class="eyebrow">DEVELOPER TOOLKIT</p>
+        <h1>API Watchtower</h1>
+        <p class="subtitle">Endpoint health &amp; HTTP security baseline</p>
+      </div>
+      <span class="local-pill">LOCAL DASHBOARD</span>
+    </header>
+
+    <section class="intro">
+      <div>
+        <p class="eyebrow">MONITORING OVERVIEW</p>
+        <h2>Know when your endpoints need attention.</h2>
+        <p class="muted">Run an on-demand check, review response times and inspect missing HTTP security headers.</p>
+      </div>
+      <div class="intro-icon" aria-hidden="true">⌁</div>
+    </section>
+
+    <section class="stats" aria-label="Monitoring statistics">
+      <article class="stat"><span>Monitored targets</span><strong id="target-count">0</strong></article>
+      <article class="stat"><span>Healthy</span><strong id="healthy-count">0</strong></article>
+      <article class="stat"><span>Needs attention</span><strong id="attention-count">0</strong></article>
+      <article class="stat"><span>Checks recorded</span><strong id="check-count">0</strong></article>
+    </section>
+
+    <section class="panel">
+      <div class="section-heading">
+        <div><p class="eyebrow">NEW TARGET</p><h2>Add an endpoint</h2></div>
+      </div>
+      <form id="target-form" class="form-grid">
+        <label>Display name<input id="target-name" name="name" placeholder="My API" minlength="2" maxlength="60" required></label>
+        <label>Endpoint URL<input id="target-url" name="url" type="url" placeholder="https://api.example.com/health" required></label>
+        <button type="submit">Add target</button>
+      </form>
+      <p id="form-message" class="message" role="status"></p>
+    </section>
+
+    <section class="panel">
+      <div class="section-heading">
+        <div><p class="eyebrow">YOUR SERVICES</p><h2>Monitored targets</h2></div>
+        <button id="refresh-btn" class="button-secondary" type="button">Refresh</button>
+      </div>
+      <div id="targets" class="target-list"><p class="muted">Loading targets…</p></div>
+    </section>
+
+    <section class="panel">
+      <div class="section-heading">
+        <div><p class="eyebrow">LATEST ACTIVITY</p><h2>Check history</h2></div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Target</th><th>Result</th><th>HTTP</th><th>Latency</th><th>Score</th><th>Checked at</th></tr></thead>
+          <tbody id="history"><tr><td colspan="6" class="muted">No checks yet.</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer>
+      <p>API Watchtower · Personal learning project · Manual HTTP GET checks only.</p>
+      <p>Only add endpoints you own or are authorised to monitor. The score is a basic header baseline, not a penetration test.</p>
+    </footer>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>
